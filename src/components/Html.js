@@ -8,6 +8,10 @@
  */
 
 import React, { PropTypes } from 'react';
+import videojsQualityselector from 'videojs-qualityselector/dist/videojs-qualityselector.js';
+import videojsQualityselectorCss from 'videojs-qualityselector/dist/videojs-qualityselector.css';
+import videojs from 'video.js/dist/video.min.js';
+import videojsCss from 'video.js/dist/video-js.min.css';
 import { analytics } from '../config';
 
 class Html extends React.Component {
@@ -38,6 +42,11 @@ class Html extends React.Component {
           <meta name="description" content={description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+          <script src="//cdn.sc.gl/videojs-hotkeys/latest/videojs.hotkeys.min.js" />
+          <script src={videojsQualityselector} />
+          <script src={videojs} />
+          <link href={videojsCss} rel="stylesheet" />
+          <link href={videojsQualityselectorCss} rel="stylesheet" />
           {styles.map(style =>
             <style
               key={style.id}

@@ -10,6 +10,7 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
+import VideoPlayer from '../../components/VideoJs/VideoJs';
 
 class Home extends React.Component {
   static propTypes = {
@@ -21,20 +22,24 @@ class Home extends React.Component {
   };
 
   render() {
+    const videoJsOptions = {
+      autoplay: false,
+      controls: true,
+      sources: [{
+        src: 'http://vjs.zencdn.net/v/oceans.mp4',
+        type: 'video/mp4',
+      },
+      {
+        src: 'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8',
+        type: 'application/x-mpegURL',
+      },
+      ],
+    };
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>React.js News</h1>
-          {this.props.news.map(item => (
-            <article key={item.link} className={s.newsItem}>
-              <h1 className={s.newsTitle}><a href={item.link}>{item.title}</a></h1>
-              <div
-                className={s.newsDesc}
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{ __html: item.content }}
-              />
-            </article>
-          ))}
+          <h1>Live Streams</h1>
+          <VideoPlayer {...videoJsOptions} />
         </div>
       </div>
     );
